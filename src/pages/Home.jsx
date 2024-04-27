@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import image from "../assets/post_image.jpg"
 import { collection, getDocs } from "firebase/firestore";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -6,14 +6,15 @@ import { db } from "../firebase/FirebaseConfig";
 import Posts from '../components/posts/Posts';
 import Popular from '../components/popular/Popular';
 import { HiArrowDown } from "react-icons/hi";
-
-
+import { context } from '../App';
 
 const Home = () => {
 
     const postsRef = collection(db, "posts");
 
-    const [posts, setPosts] = useState(localStorage.getItem('postsArray') ? JSON.parse(localStorage.getItem('postsArray')) : []);
+    const value = useContext(context);
+    const [posts, setPosts] = value;
+
     const [loading, setLoading] = useState(true);
     const [noOfPosts, setNoOfPosts] = useState(4);
 
@@ -21,18 +22,18 @@ const Home = () => {
     
 
     async function fetchData() {
-        // if (posts.length < noOfPosts || posts.length < 10) {
-        //     const getPostsFromFirebase = [];
+        if (posts.length < noOfPosts || posts.length < 10) {
+            const getPostsFromFirebase = [];
 
-        //     const querySnapshot = await getDocs(postsRef);
-        //     querySnapshot.forEach((doc) => {
-        //         getPostsFromFirebase.push({ ...doc.data(), id: doc.id });
-        //     });
-        //     setPosts(getPostsFromFirebase);
-        //     console.log(posts);
-        //     localStorage.setItem('postsArray', JSON.stringify(getPostsFromFirebase));
-        // }
-        // setLoading(false);
+            const querySnapshot = await getDocs(postsRef);
+            querySnapshot.forEach((doc) => {
+                getPostsFromFirebase.push({ ...doc.data(), id: doc.id });
+            });
+            setPosts(getPostsFromFirebase);
+            // console.log(posts);
+            localStorage.setItem('postsArray', JSON.stringify(getPostsFromFirebase));
+        }
+        setLoading(false);
     }
     
     const delDoc = async (id) => {

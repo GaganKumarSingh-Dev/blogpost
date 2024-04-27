@@ -10,6 +10,7 @@
 }
 
 .latest-post-desc {
+  cursor: pointer;
     padding: 1rem;
     width: 100%;
     display: inline-block;

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Navbar.css'
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Navbar = () => {

@@ -1,15 +1,14 @@
 import React from 'react'
 import './Posts.css'
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 const Posts = (props) => {
-    const { title, desc, id, delDoc } = props
+    const { title, desc, id, delDoc } = props;
+    const navigate = useNavigate();
 
-    // const deletePost = (key) => {
-    //     console.log(key);
-    // }
     return (
         <>
-            <div className='latest-posts' onClick={() => {}}>
+            <div className='latest-posts' onClick={() => {navigate(`/blog/${id}`)}}>
                 <div className='latest-post-desc'>
                     <h3>{title}</h3>
                     <p>{desc}</p>
