@@ -1,0 +1,41 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFBF5;
+    padding: 15px 7%;
+}
+
+.logo {
+    width: 130px;
+    cursor: pointer;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #212121;
+    padding: 0px 20px;
+    border-radius: 50px;
+}
+
+
+.search-box button {
+    padding: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f5e7da;
+    font-size: 14px;
+    max-width: 200px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.search-box span {
+    color: #f5e7da;
+    font-size: 1rem;
+    margin-left: 0.2rem;
+}
+

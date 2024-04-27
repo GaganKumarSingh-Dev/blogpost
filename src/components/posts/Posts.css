@@ -1,0 +1,41 @@
+.latest-posts {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 1rem;
+  display: flex;
+  background-color: #ffffff;
+  flex-direction: row;
+}
+
+.latest-post-desc {
+    padding: 1rem;
+    width: 100%;
+    display: inline-block;
+}
+
+.delete-post-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding: 0.8rem;
+  }
+  
+  .delete-post-btn button{
+    border: none;
+    cursor: pointer;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: transparent;
+  }
+
+.latest-post-desc {
+    padding: 1rem;
+    width: 100%;
+    display: inline-block;
+    max-height: 5.8rem;
+    overflow:hidden;
+}
+
