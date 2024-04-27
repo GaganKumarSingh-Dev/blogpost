@@ -20,7 +20,7 @@ const Home = () => {
     
 
     async function fetchData() {
-        if (posts.length < 5) {
+        if (posts.length < noOfPosts || posts.length < 10) {
             const getPostsFromFirebase = [];
 
             const querySnapshot = await getDocs(postsRef);

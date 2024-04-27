@@ -3,7 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: sans-serif;
-  scrollbar-color: transparent transparent;
+  scrollbar-color: #e8e8e8 #e8e8e8;
 }
 
 .container {
@@ -13,7 +13,7 @@
 
 .home {
   width: 100%;
-  background-color: #FFFBF5;
+  background-color: #e8e8e8;
   padding: 4rem;
   padding-top: 0.4rem;
   margin: 0px;
@@ -131,4 +131,101 @@
   margin-left: 0.4rem;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.create-post {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #e8e8e8;
+  height: 90vh;
+}
+
+.create-card {
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  width: 70%;
+  height: 50%;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.create-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-group {
+  position: relative;
+}
+
+.create-form .create-group label {
+  font-size: 14px;
+  color: rgb(99, 102, 102);
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: #fff;
+  transition: all .3s ease;
+}
+
+.create-form .create-group input,
+.create-form .create-group textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  outline: 0;
+  width: 100%;
+  background-color: #fff;
+}
+
+.create-form .create-group input:placeholder-shown+ label,
+.create-form .create-group textarea:placeholder-shown +label {
+  top: 10px;
+  background-color: #ffffff;
+}
+
+
+.create-form .create-group input:focus,
+.create-form .create-group textarea:focus {
+  border-color: #3366cc;
+}
+
+.create-form .create-group input:focus+ label, .create-form .create-group textarea:focus +label {
+  top: -10px;
+  left: 10px;
+  background-color: #fff;
+  color: #3366cc;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.create-form .create-group textarea {
+  resize: none;
+  height: 100px;
+}
+
+.create-form button {
+  background-color: #3366cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-form button:hover {
+  background-color: #27408b;
 }

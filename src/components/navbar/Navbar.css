@@ -3,8 +3,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #FFFBF5;
+    background: #e8e8e8;
     padding: 15px 7%;
+}
+
+.navbar h2 {
+    cursor: pointer;
 }
 
 .logo {

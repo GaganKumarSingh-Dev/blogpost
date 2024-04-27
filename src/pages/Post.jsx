@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Post = () => {
 
+  // Create a post
+
   const postsRef = collection(db, "posts");
-  
+
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 
@@ -23,20 +25,27 @@ const Post = () => {
       setTitle("");
       setDesc("");
       navigate('/');
-      
+
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   }
   return (
-    <div>
-      <form onSubmit={addData}>
-        <label htmlFor="title">Title</label>
-        <input type="text" id="title" name="title" value={title} placeholder='Enter your text' onChange={(e) => setTitle(e.target.value)} />
-        <label htmlFor="desc">Description</label>
-        <input type="text" id="desc" name="desc" value={desc} placeholder='Enter the post description' onChange={(e) => setDesc(e.target.value)} />
-        <button type='submit'>Add Data</button>
-      </form>
+    <div className='create-post'>
+      <div className='create-card'>
+        <span className="create-title">Create a post</span>
+        <form onSubmit={addData} className='create-form'>
+          <div className="create-group">
+            <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <label htmlFor="title">Title</label>
+          </div>
+          <div className="create-group">
+            <textarea rows={5} type="text" id="desc" name="desc" value={desc} onChange={(e) => setDesc(e.target.value)} required />
+            <label htmlFor="desc">Description</label>
+          </div>
+          <button type='submit'>Add Data</button>
+        </form>
+      </div>
     </div>
   )
 }
