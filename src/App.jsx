@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home'
 import Post from './pages/Post'
+import Blog from './pages/Blog'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/create' element={<Post />} />
+        <Route path='/blog' element={<Blog />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>

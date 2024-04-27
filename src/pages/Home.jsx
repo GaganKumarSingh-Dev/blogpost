@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import image from "../assets/post_image.jpg"
 import { collection, getDocs } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/FirebaseConfig";
 import Posts from '../components/posts/Posts';
 import Popular from '../components/popular/Popular';
@@ -14,32 +15,37 @@ const Home = () => {
 
     const [posts, setPosts] = useState(localStorage.getItem('postsArray') ? JSON.parse(localStorage.getItem('postsArray')) : []);
     const [loading, setLoading] = useState(true);
-    const [noOfPosts, setNoOfPosts] = useState(3);
+    const [noOfPosts, setNoOfPosts] = useState(4);
 
     const increasePosts = () => { setNoOfPosts(noOfPosts + 3) };
     
 
     async function fetchData() {
-        if (posts.length < noOfPosts || posts.length < 10) {
-            const getPostsFromFirebase = [];
+        // if (posts.length < noOfPosts || posts.length < 10) {
+        //     const getPostsFromFirebase = [];
 
-            const querySnapshot = await getDocs(postsRef);
-            querySnapshot.forEach((doc) => {
-                getPostsFromFirebase.push({ ...doc.data(), key: doc.id });
-            });
-            setPosts(getPostsFromFirebase);
-            localStorage.setItem('postsArray', JSON.stringify(getPostsFromFirebase));
-        }
-        setLoading(false);
+        //     const querySnapshot = await getDocs(postsRef);
+        //     querySnapshot.forEach((doc) => {
+        //         getPostsFromFirebase.push({ ...doc.data(), id: doc.id });
+        //     });
+        //     setPosts(getPostsFromFirebase);
+        //     console.log(posts);
+        //     localStorage.setItem('postsArray', JSON.stringify(getPostsFromFirebase));
+        // }
+        // setLoading(false);
+    }
+    
+    const delDoc = async (id) => {
+        const deletedDoc = await deleteDoc(doc(db, "posts", id));
+        console.log(deletedDoc);
+        setPosts(posts.filter((post) => post.id !== id));
+        localStorage.setItem('postsArray', JSON.stringify(posts));
     }
 
     useEffect(() => {
         fetchData();
-    });
+    },[]);
 
-
-
-    
     if (loading) {
         return <div>
             Loading...
@@ -52,8 +58,8 @@ const Home = () => {
                 <img src={image} alt="" />
                 <div>
                     <h3>Featured</h3>
-                    <h1>6 Legit Apps To Make Truly Passive Income By Having Your Computer Turned On.</h1>
-                    <p>Discover how to earn passive income by simply leaving your computer running. Here are six methods that can help you monetize your idle computer time.</p>
+                    <h1>{posts[0].title}</h1>
+                    <p>{posts[0].desc.slice(0,230)}...</p>
                 </div>
             </div>
             <div className='posts'>
@@ -62,8 +68,8 @@ const Home = () => {
                     <hr />
                     <div>
                         {(posts.length > 0) ? (
-                            posts.slice(0, noOfPosts).map((post) => <div key={post.key}>
-                                <Posts title={post.title} desc={post.desc} />
+                            posts.slice(1, noOfPosts).map((post) => <div key={post.id}>
+                                <Posts title={post.title} desc={post.desc} id={post.id} delDoc={delDoc}/>
                             </div>)
                         ) : <h2>loading...</h2>
                         }
@@ -74,8 +80,8 @@ const Home = () => {
                 <div className='popular'>
                     <h2>Popular Posts (Top 3)</h2>
                     {(posts.length > 0) ? (
-                        posts.slice(0, 3).map((post) => <div key={post.key}>
-                            <Popular title={post.title} desc={post.desc} />
+                        posts.slice(1, 4).map((post) => <div key={post.id}>
+                            <Popular title={post.title} desc={post.desc} id={post.id} />
                         </div>)
                     ) : <h2>loading...</h2>
                     }
