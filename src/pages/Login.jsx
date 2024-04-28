@@ -46,7 +46,6 @@ const Login = () => {
                         <input type="password" id="password" name="password" value={password} placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <button type="submit" className='auth-button-submit'>Sign In</button>
-                    <p className="auth-p">Don't have an account? <span className="auth-span" onClick={() => navigate("/signup")}>Sign Up</span></p>
                 </form>
             </div>
         </div>
