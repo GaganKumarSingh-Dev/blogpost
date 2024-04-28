@@ -17,7 +17,6 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <h2 onClick={() => navigate("/")}>BlogPost.</h2>
-
       <div className='search-box'>
         {
         loggedIn ?

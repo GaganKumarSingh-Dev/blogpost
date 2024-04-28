@@ -7,33 +7,17 @@ import Posts from '../components/posts/Posts';
 import Popular from '../components/popular/Popular';
 import { HiArrowDown } from "react-icons/hi";
 import { context } from '../App';
+import { useNavigate } from 'react-router-dom';
+import { GoArrowRight } from "react-icons/go";
+import Footer from '../components/footer/Footer';
 
 const Home = () => {
-
-    const postsRef = collection(db, "posts");
+    const navigate = useNavigate();
 
     const value = useContext(context);
-    const [posts, setPosts] = value;
-
-    const [loading, setLoading] = useState(true);
-    const [noOfPosts, setNoOfPosts] = useState(4);
+    const [posts, setPosts, loggedIn, setLoggedIn, loading, setLoading, noOfPosts, setNoOfPosts] = value;
 
     const increasePosts = () => { setNoOfPosts(noOfPosts + 3) };
-
-    async function fetchData() {
-        if (posts.length < noOfPosts || posts.length < 10) {
-            const getPostsFromFirebase = [];
-
-            const querySnapshot = await getDocs(postsRef);
-            querySnapshot.forEach((doc) => {
-                getPostsFromFirebase.push({ ...doc.data(), id: doc.id });
-            });
-            setPosts(getPostsFromFirebase);
-            // console.log(posts);
-            localStorage.setItem('postsArray', JSON.stringify(getPostsFromFirebase));
-        }
-        setLoading(false);
-    }
 
     const delDoc = async (id) => {
         const deletedDoc = await deleteDoc(doc(db, "posts", id));
@@ -41,10 +25,6 @@ const Home = () => {
         setPosts(posts.filter((post) => post.id !== id));
         localStorage.setItem('postsArray', JSON.stringify(posts));
     }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     if (loading) {
         return <div>
@@ -60,6 +40,7 @@ const Home = () => {
                     <h3>Featured</h3>
                     <h1>{posts[0].title}</h1>
                     <p>{posts[0].desc.slice(0, 230)}...</p>
+                    <button className='featured-blog-btn' onClick={() => {navigate(`/blog/${posts[0].id}`)}}>View Blog <GoArrowRight /></button>
                 </div>
             </div>
             <div className='posts'>
@@ -87,9 +68,10 @@ const Home = () => {
                     }
                 </div>
             </div>
-            <hr />
+            <Footer />
         </div>
     )
 }
 
 export default Home
+

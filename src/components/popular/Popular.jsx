@@ -1,12 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Popular = (props) => {
-    const { title, desc } = props
+    const { title, desc, id } = props
+    const navigate = useNavigate();
+    const description = desc;
     return (
         <>
-            <div className='popular-div'>
+            <div className='popular-div' onClick={() => {navigate(`/blog/${id}`)}}>
                 <h3>{title}</h3>
-                <p>{desc}</p>
+                <p>{description.slice(0, 60)}...</p>
             </div>
         </>
     )

@@ -18,5 +18,3 @@ This is a simple blogging platform built using React with state management, inco
 - React JS
 - Backend Service - Firebase
 
-## Directory Structure
-

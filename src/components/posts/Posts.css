@@ -16,6 +16,11 @@
     display: inline-block;
 }
 
+.latest-posts:hover {
+  border: 1px solid #212121;
+  background-color: #f0f0f0;
+}
+
 .delete-post-btn {
     display: flex;
     justify-content: center;

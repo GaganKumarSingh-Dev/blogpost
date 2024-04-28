@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase/FirebaseConfig";
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/footer/Footer';
 
 const Post = () => {
 
@@ -46,6 +47,7 @@ const Post = () => {
           <button type='submit'>Add Data</button>
         </form>
       </div>
+      <Footer />
     </div>
   )
 }
