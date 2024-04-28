@@ -19,7 +19,6 @@ const Home = () => {
     const [noOfPosts, setNoOfPosts] = useState(4);
 
     const increasePosts = () => { setNoOfPosts(noOfPosts + 3) };
-    
 
     async function fetchData() {
         if (posts.length < noOfPosts || posts.length < 10) {
@@ -35,7 +34,7 @@ const Home = () => {
         }
         setLoading(false);
     }
-    
+
     const delDoc = async (id) => {
         const deletedDoc = await deleteDoc(doc(db, "posts", id));
         console.log(deletedDoc);
@@ -45,7 +44,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchData();
-    },[]);
+    }, []);
 
     if (loading) {
         return <div>
@@ -60,7 +59,7 @@ const Home = () => {
                 <div>
                     <h3>Featured</h3>
                     <h1>{posts[0].title}</h1>
-                    <p>{posts[0].desc.slice(0,230)}...</p>
+                    <p>{posts[0].desc.slice(0, 230)}...</p>
                 </div>
             </div>
             <div className='posts'>
@@ -70,11 +69,11 @@ const Home = () => {
                     <div>
                         {(posts.length > 0) ? (
                             posts.slice(1, noOfPosts).map((post) => <div key={post.id}>
-                                <Posts title={post.title} desc={post.desc} id={post.id} delDoc={delDoc}/>
+                                <Posts title={post.title} desc={post.desc} id={post.id} delDoc={delDoc} />
                             </div>)
                         ) : <h2>loading...</h2>
                         }
-                    {posts.length > 4 && <button className='view-more' onClick={increasePosts}>View More <span><HiArrowDown /></span></button>}
+                        {posts.length > 4 && <button className='view-more' onClick={increasePosts}>View More <span><HiArrowDown /></span></button>}
                     </div>
                 </div>
                 <hr />

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { auth } from '../firebase/FirebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import {context} from '../App'
 
 
 const Login = () => {
@@ -10,6 +11,9 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const value = useContext(context);
+    const [posts, setPosts, loggedIn, setLoggedIn] = value;
+
     const loginUser = (event) => {
         event.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
@@ -17,9 +21,9 @@ const Login = () => {
                 console.log(value);
                 setEmail('');
                 setPassword('');
+                setLoggedIn(true);
                 alert("User logged-in successfully");
                 navigate('/');
-
             })
             .catch((error) => alert(error.message));
     }

@@ -6,7 +6,7 @@ const Blog = () => {
   const params = useParams();
 
   const value = useContext(context);
-  const [posts, loggedIn ] = value;
+  const [posts, setPosts, loggedIn, setLoggedIn] = value;
 
   const document = posts.find((post) => post.id === params.id);
 

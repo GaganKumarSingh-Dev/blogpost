@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Posts.css'
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { context } from '../../App';
+
 const Posts = (props) => {
     const { title, desc, id, delDoc } = props;
     const navigate = useNavigate();
+
+    const value = useContext(context);
+    const [posts, setPosts, loggedIn, setLoggedIn] = value;
 
     return (
         <>
@@ -13,9 +18,10 @@ const Posts = (props) => {
                     <h3>{title}</h3>
                     <p>{desc}</p>
                 </div>
+                {loggedIn && 
                 <div className='delete-post-btn'>
                     <button onClick={() => {delDoc(id)}}><MdDelete size="20px"/></button>
-                </div>
+                </div>}
             </div>
         </>
     )
