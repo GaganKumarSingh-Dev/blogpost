@@ -11,10 +11,9 @@ This is a simple blogging platform built using React with state management, inco
 - **State Management**: Utilizes React's state management features to handle the application's state.
 - **Backend Service**: Incorporates a backend service to store and retrieve posts.
 - **User Authentication**: Implements user authentication to control access for creating and deleting posts.
-- **Markdown Support**: Utilizes Markdown for blog post content to allow rich text formatting.
+- _Comments_: Implements comments functionality for each blog post.
 
 ## Technologies Used
 
 - React JS
 - Backend Service - Firebase
-
