@@ -3,7 +3,11 @@
 This is a simple blogging platform built using React with state management, incorporating a backend service Firebase to store and retrieve posts. It allows users to create, read, update, and delete blog posts, as well as add comments. User authentication is implemented to ensure only authenticated users can create and delete posts.
 
 ## Hosted Link
-- https://cute-truffle-ad3247.netlify.app/blog/V6ElIVGc8ItZllhHbMov
+- https://cute-truffle-ad3247.netlify.app/
+
+## Sample Email Password
+- email - sample123@gmail.com
+- password - 12345678
 
 ## Features
 
